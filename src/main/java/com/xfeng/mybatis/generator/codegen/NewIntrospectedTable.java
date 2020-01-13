@@ -38,13 +38,13 @@ public class NewIntrospectedTable extends IntrospectedTableMyBatis3Impl {
         // .getConfigurationType();
 
         // AbstractJavaClientGenerator javaGenerator;
-        // if ("XMLMAPPER".equalsIgnoreCase(type)) { //$NON-NLS-1$
+        // if ("XMLMAPPER".equalsIgnoreCase(type)) {
         // javaGenerator = new JavaMapperGenerator();
-        // } else if ("MIXEDMAPPER".equalsIgnoreCase(type)) { //$NON-NLS-1$
+        // } else if ("MIXEDMAPPER".equalsIgnoreCase(type)) {
         // javaGenerator = new MixedClientGenerator();
-        // } else if ("ANNOTATEDMAPPER".equalsIgnoreCase(type)) { //$NON-NLS-1$
+        // } else if ("ANNOTATEDMAPPER".equalsIgnoreCase(type)) {
         // javaGenerator = new AnnotatedClientGenerator();
-        // } else if ("MAPPER".equalsIgnoreCase(type)) { //$NON-NLS-1$
+        // } else if ("MAPPER".equalsIgnoreCase(type)) {
         // javaGenerator = new JavaMapperGenerator();
         // } else {
         // javaGenerator = (AbstractJavaClientGenerator) ObjectFactory

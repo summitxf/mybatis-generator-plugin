@@ -25,7 +25,7 @@ public class NewSelectAllElementGenerator extends AbstractXmlElementGenerator {
         answer.addElement(getBaseColumnListElement());
 
         if (introspectedTable.hasBLOBColumns()) {
-            answer.addElement(new TextElement(",")); //$NON-NLS-1$
+            answer.addElement(new TextElement(","));
             answer.addElement(getBlobColumnListElement());
         }
 

@@ -26,7 +26,7 @@ public class NewSelectOneBySelectiveElementGenerator extends AbstractXmlElementG
 
         answer.addElement(getBaseColumnListElement());
         if (introspectedTable.hasBLOBColumns()) {
-            answer.addElement(new TextElement(",")); //$NON-NLS-1$
+            answer.addElement(new TextElement(","));
             answer.addElement(getBlobColumnListElement());
         }
 
