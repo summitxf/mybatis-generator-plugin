@@ -2,9 +2,55 @@
         "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
+
+    <classPathEntry
+            location="\.m2\repository\mysql\mysql-connector-java\8.0.18\mysql-connector-java-8.0.18.jar"/>
+
+
     <context id="simple" targetRuntime="MyBatis3Simple">
+        <!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表； 一般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖 -->
+        <property name="autoDelimitKeywords" value="false"/>
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <!-- 此处是将UserMapper.xml改名为UserDao.xml -->
+        <plugin type="com.xfeng.mybatis.generator.plugins.RenameSqlMapperPlugins">
+            <property name="searchString" value="Mapper"/>
+            <property name="replaceString" value="Repository"/>
+        </plugin>
+
+        <!-- 此处是将UserMapper改名为UserDao 接口  -->
+        <plugin type="com.xfeng.mybatis.generator.plugins.RenameJavaMapperPlugins">
+            <property name="searchString" value="Mapper$"/>
+            <property name="replaceString" value="Repository"/>
+        </plugin>
+
+        <plugin type="com.xfeng.mybatis.generator.plugins.RenameJavaModelPlugins">
+            <property name="modelSuffix" value="Entity"/>
+        </plugin>
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
         <jdbcConnection driverClass="org.hsqldb.jdbcDriver"
                         connectionURL="jdbc:hsqldb:mem:aname"/>
+
+        <!-- java类型处理器 用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl； 注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和
+NUMERIC数据类型； -->
+        <javaTypeResolver
+                type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+            <!-- true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型 false：默认, scale>0;length>18：使用BigDecimal;
+                scale=0;length[10,18]：使用Long； scale=0;length[5,9]：使用Integer； scale=0;length<5：使用Short； -->
+            <property name="forceBigDecimals" value="true"/>
+            <property name="useJSR310Types" value="true"/>
+        </javaTypeResolver>
 
         <javaModelGenerator targetPackage="example.model" targetProject="src/main/java"/>
 
@@ -12,6 +58,6 @@
 
         <javaClientGenerator type="XMLMAPPER" targetPackage="example.mapper" targetProject="src/main/java"/>
 
-        <table tableName="FooTable"/>
+        <table tableName="%"/>
     </context>
 </generatorConfiguration>
