@@ -1,20 +1,19 @@
-package com.xfeng.plugin;
-
-import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
-
-import java.sql.Types;
+package com.xfeng.mybatis.generator.codegen;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.XmlElement;
+
+import java.sql.Types;
+
+import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
 public class NewMyBatis3FormattingUtilities {
 
     /**
      * Gets the parameter clause.
      *
-     * @param introspectedColumn
-     *            the introspected column
+     * @param introspectedColumn the introspected column
      * @return the parameter clause
      */
     public static String getParameterClause(IntrospectedColumn introspectedColumn) {
@@ -24,10 +23,8 @@ public class NewMyBatis3FormattingUtilities {
     /**
      * Gets the parameter clause.
      *
-     * @param introspectedColumn
-     *            the introspected column
-     * @param prefix
-     *            the prefix
+     * @param introspectedColumn the introspected column
+     * @param prefix             the prefix
      * @return the parameter clause
      */
     public static String getParameterClause(IntrospectedColumn introspectedColumn, String prefix) {

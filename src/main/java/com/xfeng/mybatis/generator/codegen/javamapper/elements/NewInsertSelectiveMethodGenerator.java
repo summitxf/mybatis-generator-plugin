@@ -1,14 +1,10 @@
-package com.xfeng.plugin.generator.method;
+package com.xfeng.mybatis.generator.codegen.javamapper.elements;
+
+import org.mybatis.generator.api.dom.java.*;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.AbstractJavaMapperMethodGenerator;
 
 import java.util.Set;
 import java.util.TreeSet;
-
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
-import org.mybatis.generator.api.dom.java.Interface;
-import org.mybatis.generator.api.dom.java.JavaVisibility;
-import org.mybatis.generator.api.dom.java.Method;
-import org.mybatis.generator.api.dom.java.Parameter;
-import org.mybatis.generator.codegen.mybatis3.javamapper.elements.AbstractJavaMapperMethodGenerator;
 
 public class NewInsertSelectiveMethodGenerator extends AbstractJavaMapperMethodGenerator {
 
@@ -23,7 +19,7 @@ public class NewInsertSelectiveMethodGenerator extends AbstractJavaMapperMethodG
 
         FullyQualifiedJavaType parameterType = introspectedTable.getRules().calculateAllFieldsClass();
 
-        Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
+        Set<FullyQualifiedJavaType> importedTypes = new TreeSet<>();
         importedTypes.add(parameterType);
         method.addParameter(new Parameter(parameterType, "record")); //$NON-NLS-1$
 

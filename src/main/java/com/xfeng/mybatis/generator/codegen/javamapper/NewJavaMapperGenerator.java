@@ -1,11 +1,6 @@
-package com.xfeng.plugin.generator;
+package com.xfeng.mybatis.generator.codegen.javamapper;
 
-import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
-import static org.mybatis.generator.internal.util.messages.Messages.getString;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import com.xfeng.mybatis.generator.codegen.javamapper.elements.*;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
@@ -17,14 +12,11 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectAllMetho
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByPrimaryKeyMethodGenerator;
 import org.mybatis.generator.config.PropertyRegistry;
 
-import com.xfeng.plugin.generator.method.NewCountBySelectiveMethodGenerator;
-import com.xfeng.plugin.generator.method.NewDeleteByPrimaryKeyMethodGenerator;
-import com.xfeng.plugin.generator.method.NewInsertSelectiveListMethodGenerator;
-import com.xfeng.plugin.generator.method.NewInsertSelectiveMethodGenerator;
-import com.xfeng.plugin.generator.method.NewSelectBySelectiveMethodGenerator;
-import com.xfeng.plugin.generator.method.NewSelectOneBySelectiveMethodGenerator;
-import com.xfeng.plugin.generator.method.NewSelectPagedBySelectiveMethodGenerator;
-import com.xfeng.plugin.generator.method.NewUpdateByPrimaryKeySelectiveMethodGenerator;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
+import static org.mybatis.generator.internal.util.messages.Messages.getString;
 
 public class NewJavaMapperGenerator extends JavaMapperGenerator {
 
@@ -49,9 +41,9 @@ public class NewJavaMapperGenerator extends JavaMapperGenerator {
         }
 
         if (stringHasValue(rootInterface)) {
-            FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType(rootInterface);
-            interfaze.addSuperInterface(fqjt);
-            interfaze.addImportedType(fqjt);
+            FullyQualifiedJavaType fullyQualifiedJavaType = new FullyQualifiedJavaType(rootInterface);
+            interfaze.addSuperInterface(fullyQualifiedJavaType);
+            interfaze.addImportedType(fullyQualifiedJavaType);
         }
 
         addInsertSelectiveMethod(interfaze);
@@ -68,8 +60,8 @@ public class NewJavaMapperGenerator extends JavaMapperGenerator {
         addSelectAllMethod(interfaze);
         addCountOneBySelectiveMethod(interfaze);
 
-        List<CompilationUnit> answer = new ArrayList<CompilationUnit>();
-        if (context.getPlugins().clientGenerated(interfaze,  introspectedTable)) {
+        List<CompilationUnit> answer = new ArrayList<>();
+        if (context.getPlugins().clientGenerated(interfaze, introspectedTable)) {
             answer.add(interfaze);
         }
 

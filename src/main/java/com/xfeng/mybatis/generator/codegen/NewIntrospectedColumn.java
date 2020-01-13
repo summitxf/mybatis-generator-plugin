@@ -1,8 +1,8 @@
-package com.xfeng.plugin;
-
-import java.sql.Types;
+package com.xfeng.mybatis.generator.codegen;
 
 import org.mybatis.generator.api.IntrospectedColumn;
+
+import java.sql.Types;
 
 public class NewIntrospectedColumn extends IntrospectedColumn {
 

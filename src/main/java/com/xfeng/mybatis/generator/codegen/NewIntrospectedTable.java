@@ -1,23 +1,21 @@
-package com.xfeng.plugin;
+package com.xfeng.mybatis.generator.codegen;
 
-import java.util.List;
-
+import com.xfeng.mybatis.generator.codegen.javamapper.NewJavaMapperGenerator;
+import com.xfeng.mybatis.generator.codegen.xmlmapper.NewXmlMapperGenerator;
 import org.mybatis.generator.api.ProgressCallback;
 import org.mybatis.generator.codegen.AbstractJavaClientGenerator;
 import org.mybatis.generator.codegen.AbstractJavaGenerator;
 import org.mybatis.generator.codegen.mybatis3.IntrospectedTableMyBatis3Impl;
-
-import com.xfeng.plugin.generator.NewJavaMapperGenerator;
-import com.xfeng.plugin.generator.NewXmlMapperGenerator;
 import org.mybatis.generator.codegen.mybatis3.model.BaseRecordGenerator;
-import org.mybatis.generator.codegen.mybatis3.model.ExampleGenerator;
 import org.mybatis.generator.codegen.mybatis3.model.PrimaryKeyGenerator;
 import org.mybatis.generator.codegen.mybatis3.model.RecordWithBLOBsGenerator;
+
+import java.util.List;
 
 public class NewIntrospectedTable extends IntrospectedTableMyBatis3Impl {
 
     protected void calculateXmlMapperGenerator(AbstractJavaClientGenerator javaClientGenerator, List<String> warnings,
-            ProgressCallback progressCallback) {
+                                               ProgressCallback progressCallback) {
         // if (javaClientGenerator == null) {
         // if (context.getSqlMapGeneratorConfiguration() != null) {
         // xmlMapperGenerator = new XMLMapperGenerator();
@@ -58,7 +56,7 @@ public class NewIntrospectedTable extends IntrospectedTableMyBatis3Impl {
     }
 
     protected void calculateJavaModelGenerators(List<String> warnings,
-                                      ProgressCallback progressCallback) {
+                                                ProgressCallback progressCallback) {
 
         if (getRules().generatePrimaryKeyClass()) {
             AbstractJavaGenerator javaGenerator = new PrimaryKeyGenerator(getModelProject());

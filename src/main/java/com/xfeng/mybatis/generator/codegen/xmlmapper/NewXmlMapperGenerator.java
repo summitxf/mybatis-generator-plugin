@@ -1,13 +1,16 @@
-package com.xfeng.plugin.generator;
+package com.xfeng.mybatis.generator.codegen.xmlmapper;
 
-import static org.mybatis.generator.internal.util.messages.Messages.getString;
-
-import com.xfeng.plugin.generator.element.*;
+import com.xfeng.mybatis.generator.codegen.xmlmapper.elements.*;
 import org.mybatis.generator.api.FullyQualifiedTable;
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.SimpleXMLMapperGenerator;
-import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.*;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.AbstractXmlElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.BaseColumnListElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.BlobColumnListElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.DeleteByPrimaryKeyElementGenerator;
+
+import static org.mybatis.generator.internal.util.messages.Messages.getString;
 
 public class NewXmlMapperGenerator extends SimpleXMLMapperGenerator {
 

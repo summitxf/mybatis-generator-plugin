@@ -4,7 +4,7 @@
 <generatorConfiguration>
     <context id="simple" targetRuntime="MyBatis3Simple">
         <jdbcConnection driverClass="org.hsqldb.jdbcDriver"
-                        connectionURL="jdbc:hsqldb:mem:aname" />
+                        connectionURL="jdbc:hsqldb:mem:aname"/>
 
         <javaModelGenerator targetPackage="example.model" targetProject="src/main/java"/>
 
@@ -12,6 +12,6 @@
 
         <javaClientGenerator type="XMLMAPPER" targetPackage="example.mapper" targetProject="src/main/java"/>
 
-        <table tableName="FooTable" />
+        <table tableName="FooTable"/>
     </context>
 </generatorConfiguration>

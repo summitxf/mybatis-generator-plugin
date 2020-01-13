@@ -1,5 +1,6 @@
-package com.xfeng.plugin.generator.element;
+package com.xfeng.mybatis.generator.codegen.xmlmapper.elements;
 
+import com.xfeng.mybatis.generator.codegen.NewMyBatis3FormattingUtilities;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.xml.Attribute;
@@ -9,8 +10,6 @@ import org.mybatis.generator.codegen.mybatis3.ListUtilities;
 import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.AbstractXmlElementGenerator;
 import org.mybatis.generator.config.GeneratedKey;
-
-import com.xfeng.plugin.NewMyBatis3FormattingUtilities;
 
 import java.util.Optional;
 

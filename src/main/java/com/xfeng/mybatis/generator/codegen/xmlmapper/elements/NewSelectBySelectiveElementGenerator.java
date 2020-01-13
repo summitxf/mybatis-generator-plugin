@@ -1,4 +1,4 @@
-package com.xfeng.plugin.generator.element;
+package com.xfeng.mybatis.generator.codegen.xmlmapper.elements;
 
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.TextElement;

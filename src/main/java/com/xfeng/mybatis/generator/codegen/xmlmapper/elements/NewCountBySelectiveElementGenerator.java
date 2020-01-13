@@ -1,4 +1,4 @@
-package com.xfeng.plugin.generator.element;
+package com.xfeng.mybatis.generator.codegen.xmlmapper.elements;
 
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.TextElement;
@@ -11,18 +11,17 @@ public class NewCountBySelectiveElementGenerator extends AbstractXmlElementGener
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("select");
 
-        String fqjt = introspectedTable.getBaseRecordType();
+        String baseRecordType = introspectedTable.getBaseRecordType();
 
         answer.addAttribute(new Attribute("id", "countBySelective"));
-        answer.addAttribute(new Attribute("parameterType", fqjt));
+        answer.addAttribute(new Attribute("parameterType", baseRecordType));
         answer.addAttribute(new Attribute("resultType", "java.lang.Integer"));
 
         context.getCommentGenerator().addComment(answer);
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("select count(*) from ");
-        sb.append(introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime());
-        answer.addElement(new TextElement(sb.toString()));
+        String sb = "select count(*) from " +
+                introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime();
+        answer.addElement(new TextElement(sb));
 
         XmlElement include = new XmlElement("include");
         include.addAttribute(new Attribute("refid", "sql_where"));
