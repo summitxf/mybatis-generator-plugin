@@ -1,5 +1,6 @@
 package com.xfeng.mybatis.generator.plugins;
 
+import com.xfeng.mybatis.generator.codegen.NewIntrospectedTable;
 import org.mybatis.generator.api.FullyQualifiedTable;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
@@ -15,15 +16,9 @@ public class RenameJavaModelPlugins extends PluginAdapter {
 
     @Override
     public void initialized(IntrospectedTable introspectedTable) {
-        String javaModelPackage = null;
-        try {
-            javaModelPackage = (String) invoke(introspectedTable, IntrospectedTable.class, "calculateJavaModelPackage");
-        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
         FullyQualifiedTable fullyQualifiedTable = introspectedTable.getFullyQualifiedTable();
 
+        String javaModelPackage =((NewIntrospectedTable)introspectedTable).calculateJavaModelPackage();
         StringBuilder sb = new StringBuilder();
         sb.append(javaModelPackage);
         sb.append('.');
@@ -57,9 +52,4 @@ public class RenameJavaModelPlugins extends PluginAdapter {
         return true;
     }
 
-    private Object invoke(final Object bean, Class clazz, final String name) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Method method = clazz.getDeclaredMethod(name);
-        method.setAccessible(true);
-        return method.invoke(bean);
-    }
 }

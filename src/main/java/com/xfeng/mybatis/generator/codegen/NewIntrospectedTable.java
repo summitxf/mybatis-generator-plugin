@@ -9,8 +9,13 @@ import org.mybatis.generator.codegen.mybatis3.IntrospectedTableMyBatis3Impl;
 import org.mybatis.generator.codegen.mybatis3.model.BaseRecordGenerator;
 import org.mybatis.generator.codegen.mybatis3.model.PrimaryKeyGenerator;
 import org.mybatis.generator.codegen.mybatis3.model.RecordWithBLOBsGenerator;
+import org.mybatis.generator.config.JavaModelGeneratorConfiguration;
+import org.mybatis.generator.config.PropertyHolder;
+import org.mybatis.generator.config.PropertyRegistry;
 
 import java.util.List;
+
+import static org.mybatis.generator.internal.util.StringUtility.isTrue;
 
 public class NewIntrospectedTable extends IntrospectedTableMyBatis3Impl {
 
@@ -78,6 +83,21 @@ public class NewIntrospectedTable extends IntrospectedTableMyBatis3Impl {
                     progressCallback);
             javaGenerators.add(javaGenerator);
         }
+    }
+
+    public String calculateJavaModelPackage(){
+        JavaModelGeneratorConfiguration config = context
+                .getJavaModelGeneratorConfiguration();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(config.getTargetPackage());
+        sb.append(fullyQualifiedTable.getSubPackageForModel(isSubPackagesEnabled(config)));
+
+        return sb.toString();
+    }
+
+    private boolean isSubPackagesEnabled(PropertyHolder propertyHolder) {
+        return isTrue(propertyHolder.getProperty(PropertyRegistry.ANY_ENABLE_SUB_PACKAGES));
     }
 
 }
