@@ -6,7 +6,7 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.elements.AbstractJavaMa
 import java.util.Set;
 import java.util.TreeSet;
 
-public class NewSelectOneBySelectiveMethodGenerator extends AbstractJavaMapperMethodGenerator {
+public class MySelectBySelectiveMethodGenerator extends AbstractJavaMapperMethodGenerator {
 
     @Override
     public void addInterfaceElements(Interface interfaze) {
@@ -16,15 +16,17 @@ public class NewSelectOneBySelectiveMethodGenerator extends AbstractJavaMapperMe
         importedTypes.add(parameterType);
         importedTypes.add(FullyQualifiedJavaType.getNewListInstance());
 
-        Method method = new Method("selectOneBySelective");
+        Method method = new Method("selectBySelective");
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setAbstract(true);
 
-        FullyQualifiedJavaType returnType = introspectedTable.getRules().calculateAllFieldsClass();
-        method.setReturnType(returnType);
-        importedTypes.add(returnType);
+        FullyQualifiedJavaType returnType = FullyQualifiedJavaType.getNewListInstance();
+        FullyQualifiedJavaType listType = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
 
-        method.setName("selectOneBySelective");
+        importedTypes.add(listType);
+        returnType.addTypeArgument(listType);
+        method.setReturnType(returnType);
+        method.setName("selectBySelective");
         method.addParameter(new Parameter(parameterType, "record"));
 
         context.getCommentGenerator().addGeneralMethodComment(method, introspectedTable);

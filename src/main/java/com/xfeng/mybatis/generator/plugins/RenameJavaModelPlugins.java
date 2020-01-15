@@ -1,6 +1,6 @@
 package com.xfeng.mybatis.generator.plugins;
 
-import com.xfeng.mybatis.generator.codegen.NewIntrospectedTable;
+import com.xfeng.mybatis.generator.codegen.MyIntrospectedTable;
 import org.mybatis.generator.api.FullyQualifiedTable;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
@@ -18,7 +18,7 @@ public class RenameJavaModelPlugins extends PluginAdapter {
     public void initialized(IntrospectedTable introspectedTable) {
         FullyQualifiedTable fullyQualifiedTable = introspectedTable.getFullyQualifiedTable();
 
-        String javaModelPackage =((NewIntrospectedTable)introspectedTable).calculateJavaModelPackage();
+        String javaModelPackage =((MyIntrospectedTable)introspectedTable).calculateJavaModelPackage();
         StringBuilder sb = new StringBuilder();
         sb.append(javaModelPackage);
         sb.append('.');

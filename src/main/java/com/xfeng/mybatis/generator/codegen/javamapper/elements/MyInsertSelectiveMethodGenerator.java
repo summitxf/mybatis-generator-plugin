@@ -6,29 +6,27 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.elements.AbstractJavaMa
 import java.util.Set;
 import java.util.TreeSet;
 
-public class NewInsertSelectiveListMethodGenerator extends AbstractJavaMapperMethodGenerator {
+public class MyInsertSelectiveMethodGenerator extends AbstractJavaMapperMethodGenerator {
 
     @Override
     public void addInterfaceElements(Interface interfaze) {
-        Method method = new Method("insertSelectiveList");
+        Method method = new Method(introspectedTable.getInsertSelectiveStatementId());
 
         method.setReturnType(new FullyQualifiedJavaType("Integer"));
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.setName("insertSelectiveList");
+        method.setName(introspectedTable.getInsertSelectiveStatementId());
         method.setAbstract(true);
 
-        FullyQualifiedJavaType inputType = FullyQualifiedJavaType.getNewListInstance();
-        FullyQualifiedJavaType listType = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
-
-        inputType.addTypeArgument(listType);
+        FullyQualifiedJavaType parameterType = introspectedTable.getRules().calculateAllFieldsClass();
 
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<>();
-        importedTypes.add(listType);
-        method.addParameter(new Parameter(inputType, "record"));
+        importedTypes.add(parameterType);
+        method.addParameter(new Parameter(parameterType, "record"));
 
         context.getCommentGenerator().addGeneralMethodComment(method, introspectedTable);
 
         interfaze.addImportedTypes(importedTypes);
         interfaze.addMethod(method);
     }
+
 }

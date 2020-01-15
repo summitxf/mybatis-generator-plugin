@@ -6,7 +6,7 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.elements.AbstractJavaMa
 import java.util.Set;
 import java.util.TreeSet;
 
-public class NewUpdateByPrimaryKeySelectiveMethodGenerator extends AbstractJavaMapperMethodGenerator {
+public class MyUpdateByPrimaryKeySelectiveMethodGenerator extends AbstractJavaMapperMethodGenerator {
 
     @Override
     public void addInterfaceElements(Interface interfaze) {

@@ -12,9 +12,9 @@ import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.DeleteByPrimary
 
 import static org.mybatis.generator.internal.util.messages.Messages.getString;
 
-public class NewXmlMapperGenerator extends SimpleXMLMapperGenerator {
+public class MyXmlMapperGenerator extends SimpleXMLMapperGenerator {
 
-    public NewXmlMapperGenerator() {
+    public MyXmlMapperGenerator() {
         super();
     }
 
@@ -28,7 +28,9 @@ public class NewXmlMapperGenerator extends SimpleXMLMapperGenerator {
         context.getCommentGenerator().addRootComment(answer);
 
         addBaseColumnListElement(answer);
-        addBlobColumnListElement(answer);
+        if (introspectedTable.hasBLOBColumns()) {
+            addBlobColumnListElement(answer);
+        }
         addResultMapElement(answer);
         addWhereElement(answer);
 
@@ -60,22 +62,22 @@ public class NewXmlMapperGenerator extends SimpleXMLMapperGenerator {
     }
 
     protected void addResultMapElement(XmlElement parentElement) {
-        AbstractXmlElementGenerator elementGenerator = new NewResultMapElementGenerator();
+        AbstractXmlElementGenerator elementGenerator = new MyResultMapElementGenerator();
         initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 
     private void addWhereElement(XmlElement parentElement) {
-        AbstractXmlElementGenerator elementGenerator = new NewWhereElementGenerator();
+        AbstractXmlElementGenerator elementGenerator = new MyWhereElementGenerator();
         initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 
     protected void addInsertSelectiveElement(XmlElement parentElement) {
-        AbstractXmlElementGenerator elementGenerator = new NewInsertSelectiveElementGenerator();
+        AbstractXmlElementGenerator elementGenerator = new MyInsertSelectiveElementGenerator();
         initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 
     private void addInsertSelectiveListElement(XmlElement parentElement) {
-        AbstractXmlElementGenerator elementGenerator = new NewInsertSelectiveListElementGenerator();
+        AbstractXmlElementGenerator elementGenerator = new MyInsertSelectiveListElementGenerator();
         initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 
@@ -85,37 +87,37 @@ public class NewXmlMapperGenerator extends SimpleXMLMapperGenerator {
     }
 
     protected void addUpdateByPrimaryKeySelectiveElement(XmlElement parentElement) {
-        AbstractXmlElementGenerator elementGenerator = new NewUpdateByPrimaryKeySelectiveElementGenerator();
+        AbstractXmlElementGenerator elementGenerator = new MyUpdateByPrimaryKeySelectiveElementGenerator();
         initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 
     protected void addSelectByPrimaryKeyElement(XmlElement parentElement) {
-        AbstractXmlElementGenerator elementGenerator = new NewSelectByPrimaryKeyElementGenerator();
+        AbstractXmlElementGenerator elementGenerator = new MySelectByPrimaryKeyElementGenerator();
         initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 
     private void addSelectBySelectiveElement(XmlElement parentElement) {
-        AbstractXmlElementGenerator elementGenerator = new NewSelectBySelectiveElementGenerator();
+        AbstractXmlElementGenerator elementGenerator = new MySelectBySelectiveElementGenerator();
         initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 
     private void addSelectPagedBySelectiveElement(XmlElement parentElement) {
-        AbstractXmlElementGenerator elementGenerator = new NewSelectPagedBySelectiveElementGenerator();
+        AbstractXmlElementGenerator elementGenerator = new MySelectPagedBySelectiveElementGenerator();
         initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 
     private void addSelectOneBySelectiveElement(XmlElement parentElement) {
-        AbstractXmlElementGenerator elementGenerator = new NewSelectOneBySelectiveElementGenerator();
+        AbstractXmlElementGenerator elementGenerator = new MySelectOneBySelectiveElementGenerator();
         initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 
     protected void addSelectAllElement(XmlElement parentElement) {
-        AbstractXmlElementGenerator elementGenerator = new NewSelectAllElementGenerator();
+        AbstractXmlElementGenerator elementGenerator = new MySelectAllElementGenerator();
         initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 
     private void addCountOneBySelectiveElement(XmlElement parentElement) {
-        AbstractXmlElementGenerator elementGenerator = new NewCountBySelectiveElementGenerator();
+        AbstractXmlElementGenerator elementGenerator = new MyCountBySelectiveElementGenerator();
         initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 

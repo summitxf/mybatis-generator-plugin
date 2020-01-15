@@ -9,9 +9,9 @@ import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.AbstractXmlElem
 
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
-public class NewSelectByPrimaryKeyElementGenerator extends AbstractXmlElementGenerator {
+public class MySelectByPrimaryKeyElementGenerator extends AbstractXmlElementGenerator {
 
-    public NewSelectByPrimaryKeyElementGenerator() {
+    public MySelectByPrimaryKeyElementGenerator() {
         super();
     }
 

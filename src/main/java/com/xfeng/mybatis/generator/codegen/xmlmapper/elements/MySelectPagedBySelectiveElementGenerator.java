@@ -1,20 +1,23 @@
 package com.xfeng.mybatis.generator.codegen.xmlmapper.elements;
 
+import com.xfeng.mybatis.generator.codegen.MyMyBatis3FormattingUtilities;
+import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
+import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.AbstractXmlElementGenerator;
-import org.mybatis.generator.config.PropertyRegistry;
-import org.mybatis.generator.internal.util.StringUtility;
 
-public class NewSelectAllElementGenerator extends AbstractXmlElementGenerator {
+public class MySelectPagedBySelectiveElementGenerator extends AbstractXmlElementGenerator {
 
     @Override
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("select");
 
-        answer.addAttribute(new Attribute("id", introspectedTable.getSelectAllStatementId()));
+        answer.addAttribute(new Attribute("id", "selectPagedBySelective"));
         answer.addAttribute(new Attribute("resultMap", introspectedTable.getBaseResultMapId()));
+
+        answer.addAttribute(new Attribute("parameterType", "map"));
 
         context.getCommentGenerator().addComment(answer);
 
@@ -23,7 +26,6 @@ public class NewSelectAllElementGenerator extends AbstractXmlElementGenerator {
         answer.addElement(new TextElement(sb.toString()));
 
         answer.addElement(getBaseColumnListElement());
-
         if (introspectedTable.hasBLOBColumns()) {
             answer.addElement(new TextElement(","));
             answer.addElement(getBlobColumnListElement());
@@ -34,15 +36,21 @@ public class NewSelectAllElementGenerator extends AbstractXmlElementGenerator {
         sb.append(introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime());
         answer.addElement(new TextElement(sb.toString()));
 
-        String orderByClause = introspectedTable
-                .getTableConfigurationProperty(PropertyRegistry.TABLE_SELECT_ALL_ORDER_BY_CLAUSE);
-        boolean hasOrderBy = StringUtility.stringHasValue(orderByClause);
-        if (hasOrderBy) {
+        XmlElement where = new XmlElement("where");
+        for (IntrospectedColumn introspectedColumn : introspectedTable.getNonPrimaryKeyColumns()) {
+            XmlElement isNotNullElement = MyMyBatis3FormattingUtilities.getIsNotNullElement(introspectedColumn, "record.");
+            where.addElement(isNotNullElement);
+
             sb.setLength(0);
-            sb.append("order by ");
-            sb.append(orderByClause);
-            answer.addElement(new TextElement(sb.toString()));
+            sb.append(" and ");
+            sb.append(MyBatis3FormattingUtilities.getEscapedColumnName(introspectedColumn));
+            sb.append(" = ");
+            sb.append(MyMyBatis3FormattingUtilities.getParameterClause(introspectedColumn, "record."));
+            isNotNullElement.addElement(new TextElement(sb.toString()));
         }
+        answer.addElement(where);
+
+        answer.addElement(new TextElement("limit #{startRow}, #{rowSize}"));
 
         parentElement.addElement(answer);
     }

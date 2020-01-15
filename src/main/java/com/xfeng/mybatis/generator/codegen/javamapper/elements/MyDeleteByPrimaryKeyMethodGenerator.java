@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class NewDeleteByPrimaryKeyMethodGenerator extends AbstractJavaMapperMethodGenerator {
+public class MyDeleteByPrimaryKeyMethodGenerator extends AbstractJavaMapperMethodGenerator {
 
     @Override
     public void addInterfaceElements(Interface interfaze) {

@@ -18,9 +18,9 @@ import java.util.List;
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 import static org.mybatis.generator.internal.util.messages.Messages.getString;
 
-public class NewJavaMapperGenerator extends JavaMapperGenerator {
+public class MyJavaMapperGenerator extends JavaMapperGenerator {
 
-    public NewJavaMapperGenerator(String project) {
+    public MyJavaMapperGenerator(String project) {
         super(project);
     }
 
@@ -74,22 +74,22 @@ public class NewJavaMapperGenerator extends JavaMapperGenerator {
     }
 
     protected void addInsertSelectiveMethod(Interface interfaze) {
-        AbstractJavaMapperMethodGenerator methodGenerator = new NewInsertSelectiveMethodGenerator();
+        AbstractJavaMapperMethodGenerator methodGenerator = new MyInsertSelectiveMethodGenerator();
         initializeAndExecuteGenerator(methodGenerator, interfaze);
     }
 
     private void addInsertSelectiveListMethod(Interface interfaze) {
-        AbstractJavaMapperMethodGenerator methodGenerator = new NewInsertSelectiveListMethodGenerator();
+        AbstractJavaMapperMethodGenerator methodGenerator = new MyInsertSelectiveListMethodGenerator();
         initializeAndExecuteGenerator(methodGenerator, interfaze);
     }
 
     protected void addDeleteByPrimaryKeyMethod(Interface interfaze) {
-        AbstractJavaMapperMethodGenerator methodGenerator = new NewDeleteByPrimaryKeyMethodGenerator();
+        AbstractJavaMapperMethodGenerator methodGenerator = new MyDeleteByPrimaryKeyMethodGenerator();
         initializeAndExecuteGenerator(methodGenerator, interfaze);
     }
 
     protected void addUpdateByPrimaryKeySelectiveMethod(Interface interfaze) {
-        AbstractJavaMapperMethodGenerator methodGenerator = new NewUpdateByPrimaryKeySelectiveMethodGenerator();
+        AbstractJavaMapperMethodGenerator methodGenerator = new MyUpdateByPrimaryKeySelectiveMethodGenerator();
         initializeAndExecuteGenerator(methodGenerator, interfaze);
     }
 
@@ -99,17 +99,17 @@ public class NewJavaMapperGenerator extends JavaMapperGenerator {
     }
 
     private void addSelectBySelectiveMethod(Interface interfaze) {
-        AbstractJavaMapperMethodGenerator methodGenerator = new NewSelectBySelectiveMethodGenerator();
+        AbstractJavaMapperMethodGenerator methodGenerator = new MySelectBySelectiveMethodGenerator();
         initializeAndExecuteGenerator(methodGenerator, interfaze);
     }
 
     private void addSelectPagedBySelectiveMethod(Interface interfaze) {
-        AbstractJavaMapperMethodGenerator methodGenerator = new NewSelectPagedBySelectiveMethodGenerator();
+        AbstractJavaMapperMethodGenerator methodGenerator = new MySelectPagedBySelectiveMethodGenerator();
         initializeAndExecuteGenerator(methodGenerator, interfaze);
     }
 
     private void addSelectOneBySelectiveMethod(Interface interfaze) {
-        AbstractJavaMapperMethodGenerator methodGenerator = new NewSelectOneBySelectiveMethodGenerator();
+        AbstractJavaMapperMethodGenerator methodGenerator = new MySelectOneBySelectiveMethodGenerator();
         initializeAndExecuteGenerator(methodGenerator, interfaze);
     }
 
@@ -119,7 +119,7 @@ public class NewJavaMapperGenerator extends JavaMapperGenerator {
     }
 
     private void addCountOneBySelectiveMethod(Interface interfaze) {
-        AbstractJavaMapperMethodGenerator methodGenerator = new NewCountBySelectiveMethodGenerator();
+        AbstractJavaMapperMethodGenerator methodGenerator = new MyCountBySelectiveMethodGenerator();
         initializeAndExecuteGenerator(methodGenerator, interfaze);
     }
 

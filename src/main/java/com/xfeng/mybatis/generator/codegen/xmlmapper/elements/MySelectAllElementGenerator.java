@@ -4,19 +4,17 @@ import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.AbstractXmlElementGenerator;
+import org.mybatis.generator.config.PropertyRegistry;
+import org.mybatis.generator.internal.util.StringUtility;
 
-public class NewSelectOneBySelectiveElementGenerator extends AbstractXmlElementGenerator {
+public class MySelectAllElementGenerator extends AbstractXmlElementGenerator {
 
     @Override
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("select");
 
-        answer.addAttribute(new Attribute("id", "selectOneBySelective"));
+        answer.addAttribute(new Attribute("id", introspectedTable.getSelectAllStatementId()));
         answer.addAttribute(new Attribute("resultMap", introspectedTable.getBaseResultMapId()));
-
-        String parameterType = introspectedTable.getBaseRecordType();
-
-        answer.addAttribute(new Attribute("parameterType", parameterType));
 
         context.getCommentGenerator().addComment(answer);
 
@@ -25,6 +23,7 @@ public class NewSelectOneBySelectiveElementGenerator extends AbstractXmlElementG
         answer.addElement(new TextElement(sb.toString()));
 
         answer.addElement(getBaseColumnListElement());
+
         if (introspectedTable.hasBLOBColumns()) {
             answer.addElement(new TextElement(","));
             answer.addElement(getBlobColumnListElement());
@@ -35,11 +34,15 @@ public class NewSelectOneBySelectiveElementGenerator extends AbstractXmlElementG
         sb.append(introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime());
         answer.addElement(new TextElement(sb.toString()));
 
-        XmlElement include = new XmlElement("include");
-        include.addAttribute(new Attribute("refid", "sql_where"));
-        answer.addElement(include);
-
-        answer.addElement(new TextElement("limit 1 "));
+        String orderByClause = introspectedTable
+                .getTableConfigurationProperty(PropertyRegistry.TABLE_SELECT_ALL_ORDER_BY_CLAUSE);
+        boolean hasOrderBy = StringUtility.stringHasValue(orderByClause);
+        if (hasOrderBy) {
+            sb.setLength(0);
+            sb.append("order by ");
+            sb.append(orderByClause);
+            answer.addElement(new TextElement(sb.toString()));
+        }
 
         parentElement.addElement(answer);
     }

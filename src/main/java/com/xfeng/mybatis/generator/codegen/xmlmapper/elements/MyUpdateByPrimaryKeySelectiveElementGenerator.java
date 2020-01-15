@@ -1,6 +1,6 @@
 package com.xfeng.mybatis.generator.codegen.xmlmapper.elements;
 
-import com.xfeng.mybatis.generator.codegen.NewMyBatis3FormattingUtilities;
+import com.xfeng.mybatis.generator.codegen.MyMyBatis3FormattingUtilities;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.TextElement;
@@ -9,7 +9,7 @@ import org.mybatis.generator.codegen.mybatis3.ListUtilities;
 import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.AbstractXmlElementGenerator;
 
-public class NewUpdateByPrimaryKeySelectiveElementGenerator extends AbstractXmlElementGenerator {
+public class MyUpdateByPrimaryKeySelectiveElementGenerator extends AbstractXmlElementGenerator {
 
     @Override
     public void addElements(XmlElement parentElement) {
@@ -48,7 +48,7 @@ public class NewUpdateByPrimaryKeySelectiveElementGenerator extends AbstractXmlE
             sb.setLength(0);
             sb.append(MyBatis3FormattingUtilities.getEscapedColumnName(introspectedColumn));
             sb.append(" = ");
-            sb.append(NewMyBatis3FormattingUtilities.getParameterClause(introspectedColumn));
+            sb.append(MyMyBatis3FormattingUtilities.getParameterClause(introspectedColumn));
             sb.append(',');
 
             isNotNullElement.addElement(new TextElement(sb.toString()));
@@ -66,7 +66,7 @@ public class NewUpdateByPrimaryKeySelectiveElementGenerator extends AbstractXmlE
 
             sb.append(MyBatis3FormattingUtilities.getEscapedColumnName(introspectedColumn));
             sb.append(" = ");
-            sb.append(NewMyBatis3FormattingUtilities.getParameterClause(introspectedColumn));
+            sb.append(MyMyBatis3FormattingUtilities.getParameterClause(introspectedColumn));
             answer.addElement(new TextElement(sb.toString()));
         }
 

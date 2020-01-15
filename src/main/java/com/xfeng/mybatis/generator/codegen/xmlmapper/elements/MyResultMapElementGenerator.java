@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
-public class NewResultMapElementGenerator extends AbstractXmlElementGenerator {
+public class MyResultMapElementGenerator extends AbstractXmlElementGenerator {
 
     @Override
     public void addElements(XmlElement parentElement) {

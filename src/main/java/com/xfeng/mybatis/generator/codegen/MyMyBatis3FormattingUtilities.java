@@ -8,7 +8,7 @@ import java.sql.Types;
 
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
-public class NewMyBatis3FormattingUtilities {
+public class MyMyBatis3FormattingUtilities {
 
     /**
      * Gets the parameter clause.

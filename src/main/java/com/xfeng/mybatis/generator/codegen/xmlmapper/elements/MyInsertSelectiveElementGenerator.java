@@ -1,6 +1,6 @@
 package com.xfeng.mybatis.generator.codegen.xmlmapper.elements;
 
-import com.xfeng.mybatis.generator.codegen.NewMyBatis3FormattingUtilities;
+import com.xfeng.mybatis.generator.codegen.MyMyBatis3FormattingUtilities;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.xml.Attribute;
@@ -13,7 +13,7 @@ import org.mybatis.generator.config.GeneratedKey;
 
 import java.util.Optional;
 
-public class NewInsertSelectiveElementGenerator extends AbstractXmlElementGenerator {
+public class MyInsertSelectiveElementGenerator extends AbstractXmlElementGenerator {
 
     @Override
     public void addElements(XmlElement parentElement) {
@@ -77,14 +77,14 @@ public class NewInsertSelectiveElementGenerator extends AbstractXmlElementGenera
                 insertTrimElement.addElement(new TextElement(sb.toString()));
 
                 sb.setLength(0);
-                sb.append(NewMyBatis3FormattingUtilities.getParameterClause(introspectedColumn));
+                sb.append(MyMyBatis3FormattingUtilities.getParameterClause(introspectedColumn));
                 sb.append(',');
                 valuesTrimElement.addElement(new TextElement(sb.toString()));
 
                 continue;
             }
 
-            XmlElement insertNotNullElement = NewMyBatis3FormattingUtilities.getIsNotNullElement(introspectedColumn);
+            XmlElement insertNotNullElement = MyMyBatis3FormattingUtilities.getIsNotNullElement(introspectedColumn);
 
             sb.setLength(0);
             sb.append(MyBatis3FormattingUtilities.getEscapedColumnName(introspectedColumn));
@@ -92,10 +92,10 @@ public class NewInsertSelectiveElementGenerator extends AbstractXmlElementGenera
             insertNotNullElement.addElement(new TextElement(sb.toString()));
             insertTrimElement.addElement(insertNotNullElement);
 
-            XmlElement valuesNotNullElement = NewMyBatis3FormattingUtilities.getIsNotNullElement(introspectedColumn);
+            XmlElement valuesNotNullElement = MyMyBatis3FormattingUtilities.getIsNotNullElement(introspectedColumn);
 
             sb.setLength(0);
-            sb.append(NewMyBatis3FormattingUtilities.getParameterClause(introspectedColumn));
+            sb.append(MyMyBatis3FormattingUtilities.getParameterClause(introspectedColumn));
             sb.append(',');
             valuesNotNullElement.addElement(new TextElement(sb.toString()));
             valuesTrimElement.addElement(valuesNotNullElement);

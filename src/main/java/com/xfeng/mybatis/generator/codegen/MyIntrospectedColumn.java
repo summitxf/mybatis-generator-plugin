@@ -4,7 +4,7 @@ import org.mybatis.generator.api.IntrospectedColumn;
 
 import java.sql.Types;
 
-public class NewIntrospectedColumn extends IntrospectedColumn {
+public class MyIntrospectedColumn extends IntrospectedColumn {
 
     public boolean isBLOBColumn() {
         String typeName = getJdbcTypeName();

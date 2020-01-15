@@ -6,7 +6,7 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.elements.AbstractJavaMa
 import java.util.Set;
 import java.util.TreeSet;
 
-public class NewSelectPagedBySelectiveMethodGenerator extends AbstractJavaMapperMethodGenerator {
+public class MySelectPagedBySelectiveMethodGenerator extends AbstractJavaMapperMethodGenerator {
 
     @Override
     public void addInterfaceElements(Interface interfaze) {

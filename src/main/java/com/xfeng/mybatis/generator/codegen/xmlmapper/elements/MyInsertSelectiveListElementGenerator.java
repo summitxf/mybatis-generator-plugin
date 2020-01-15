@@ -1,6 +1,6 @@
 package com.xfeng.mybatis.generator.codegen.xmlmapper.elements;
 
-import com.xfeng.mybatis.generator.codegen.NewMyBatis3FormattingUtilities;
+import com.xfeng.mybatis.generator.codegen.MyMyBatis3FormattingUtilities;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.xml.Attribute;
@@ -13,7 +13,7 @@ import org.mybatis.generator.config.GeneratedKey;
 
 import java.util.Optional;
 
-public class NewInsertSelectiveListElementGenerator extends AbstractXmlElementGenerator {
+public class MyInsertSelectiveListElementGenerator extends AbstractXmlElementGenerator {
 
     @Override
     public void addElements(XmlElement parentElement) {
@@ -102,7 +102,7 @@ public class NewInsertSelectiveListElementGenerator extends AbstractXmlElementGe
                 // This is required for MyBatis3 because MyBatis3 parses
                 // and calculates the SQL before executing the selectKey
                 sb.setLength(0);
-                sb.append(NewMyBatis3FormattingUtilities.getParameterClause(introspectedColumn));
+                sb.append(MyMyBatis3FormattingUtilities.getParameterClause(introspectedColumn));
                 sb.append(',');
                 valuesTrimElement.addElement(new TextElement(sb.toString()));
 
@@ -110,7 +110,7 @@ public class NewInsertSelectiveListElementGenerator extends AbstractXmlElementGe
             }
 
             sb.setLength(0);
-            sb.append(NewMyBatis3FormattingUtilities.getParameterClause(introspectedColumn, "item."));
+            sb.append(MyMyBatis3FormattingUtilities.getParameterClause(introspectedColumn, "item."));
             sb.append(',');
             valuesTrimElement.addElement(new TextElement(sb.toString()));
         }
