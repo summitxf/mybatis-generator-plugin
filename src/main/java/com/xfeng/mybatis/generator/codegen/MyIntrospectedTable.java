@@ -89,11 +89,8 @@ public class MyIntrospectedTable extends IntrospectedTableMyBatis3Impl {
         JavaModelGeneratorConfiguration config = context
                 .getJavaModelGeneratorConfiguration();
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(config.getTargetPackage());
-        sb.append(fullyQualifiedTable.getSubPackageForModel(isSubPackagesEnabled(config)));
-
-        return sb.toString();
+        return config.getTargetPackage() +
+                fullyQualifiedTable.getSubPackageForModel(isSubPackagesEnabled(config));
     }
 
     private boolean isSubPackagesEnabled(PropertyHolder propertyHolder) {
