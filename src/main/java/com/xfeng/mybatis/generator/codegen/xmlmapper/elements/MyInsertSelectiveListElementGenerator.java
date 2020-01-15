@@ -74,6 +74,10 @@ public class MyInsertSelectiveListElementGenerator extends AbstractXmlElementGen
         for (IntrospectedColumn introspectedColumn : ListUtilities
                 .removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getNonPrimaryKeyColumns())) {
 
+            if (MyMyBatis3FormattingUtilities.isIgnoreColumn(introspectedColumn.getActualColumnName(), answer.getName())) {
+                continue;
+            }
+
             if (introspectedColumn.isSequenceColumn() || introspectedColumn.getFullyQualifiedJavaType().isPrimitive()) {
                 // if it is a sequence column, it is not optional
                 // This is required for MyBatis3 because MyBatis3 parses
@@ -96,6 +100,10 @@ public class MyInsertSelectiveListElementGenerator extends AbstractXmlElementGen
 
         for (IntrospectedColumn introspectedColumn : ListUtilities
                 .removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getNonPrimaryKeyColumns())) {
+
+            if (MyMyBatis3FormattingUtilities.isIgnoreColumn(introspectedColumn.getActualColumnName(), answer.getName())) {
+                continue;
+            }
 
             if (introspectedColumn.isSequenceColumn() || introspectedColumn.getFullyQualifiedJavaType().isPrimitive()) {
                 // if it is a sequence column, it is not optional

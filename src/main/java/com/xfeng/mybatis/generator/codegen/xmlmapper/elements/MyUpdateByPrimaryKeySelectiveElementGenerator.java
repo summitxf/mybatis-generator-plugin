@@ -41,7 +41,11 @@ public class MyUpdateByPrimaryKeySelectiveElementGenerator extends AbstractXmlEl
         for (IntrospectedColumn introspectedColumn : ListUtilities
                 .removeGeneratedAlwaysColumns(introspectedTable.getNonPrimaryKeyColumns())) {
 
-            XmlElement isNotNullElement = NewMyBatis3FormattingUtilities.getIsNotNullElement(introspectedColumn);
+            if (MyMyBatis3FormattingUtilities.isIgnoreColumn(introspectedColumn.getActualColumnName(), answer.getName())) {
+                continue;
+            }
+
+            XmlElement isNotNullElement = MyMyBatis3FormattingUtilities.getIsNotNullElement(introspectedColumn);
 
             dynamicElement.addElement(isNotNullElement);
 
@@ -56,6 +60,10 @@ public class MyUpdateByPrimaryKeySelectiveElementGenerator extends AbstractXmlEl
 
         boolean and = false;
         for (IntrospectedColumn introspectedColumn : introspectedTable.getPrimaryKeyColumns()) {
+            if (MyMyBatis3FormattingUtilities.isIgnoreColumn(introspectedColumn.getActualColumnName(), answer.getName())) {
+                continue;
+            }
+
             sb.setLength(0);
             if (and) {
                 sb.append(" and ");

@@ -83,4 +83,8 @@ public class MyMyBatis3FormattingUtilities {
         isNotNullElement.addAttribute(new Attribute("test", sb.toString()));
         return isNotNullElement;
     }
+
+    public static boolean isIgnoreColumn(String columnName, String answerName) {
+        return ("insert".equals(answerName) && ("update_time".equals(columnName) || "update_user".equals(columnName))) || ("update".equals(answerName) && ("create_time".equals(columnName) || "create_user".equals(columnName)));
+    }
 }

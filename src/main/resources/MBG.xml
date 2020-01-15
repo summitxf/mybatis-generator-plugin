@@ -7,8 +7,8 @@
             location="\.m2\repository\mysql\mysql-connector-java\8.0.18\mysql-connector-java-8.0.18.jar"/>
 
 
-    <context id="default" targetRuntime="com.xfeng.mybatis.generator.codegen.NewIntrospectedTable"
-             introspectedColumnImpl="com.xfeng.mybatis.generator.codegen.NewIntrospectedColumn"
+    <context id="default" targetRuntime="com.xfeng.mybatis.generator.codegen.MyIntrospectedTable"
+             introspectedColumnImpl="com.xfeng.mybatis.generator.codegen.MyIntrospectedColumn"
              defaultModelType="flat">
 
         <!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表； 一般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖 -->

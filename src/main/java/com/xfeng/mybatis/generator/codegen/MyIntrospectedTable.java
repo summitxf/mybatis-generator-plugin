@@ -85,7 +85,7 @@ public class MyIntrospectedTable extends IntrospectedTableMyBatis3Impl {
         }
     }
 
-    public String calculateJavaModelPackage(){
+    public String calculateJavaModelPackage() {
         JavaModelGeneratorConfiguration config = context
                 .getJavaModelGeneratorConfiguration();
 
